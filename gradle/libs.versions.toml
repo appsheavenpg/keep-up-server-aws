@@ -1,0 +1,19 @@
+[versions]
+aws-lambda-core = "1.2.2"
+aws-lambda-events = "3.11.0"
+junit = "4.13.2"
+kotlin = "2.0.21"
+
+[libraries]
+aws-lambda-core = { group = "com.amazonaws", name = "aws-lambda-java-core", version.ref = "aws-lambda-core" }
+aws-lambda-events = { group = "com.amazonaws", name = "aws-lambda-java-events", version.ref = "aws-lambda-events" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+[bundles]
+aws-lambda-java = [
+    "aws-lambda-core",
+    "aws-lambda-events",
+]

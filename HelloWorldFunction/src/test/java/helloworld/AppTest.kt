@@ -1,22 +1,24 @@
-package helloworld;
+package helloworld
 
-import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
-public class AppTest {
-  @Test
-  public void successfulResponse() {
-    App app = new App();
-    APIGatewayProxyResponseEvent result = app.handleRequest(null, null);
-    assertEquals(200, result.getStatusCode().intValue());
-    assertEquals("application/json", result.getHeaders().get("Content-Type"));
-    String content = result.getBody();
-    assertNotNull(content);
-    assertTrue(content.contains("\"message\""));
-    assertTrue(content.contains("\"hello world\""));
-    assertTrue(content.contains("\"location\""));
-  }
+class AppTest {
+    @Test
+    fun `successful response`() {
+        val app = App()
+        val result: APIGatewayProxyResponseEvent = app.handleRequest(null, null)
+        
+        assertEquals(200, result.statusCode)
+        assertEquals("application/json", result.headers["Content-Type"])
+        
+        val content = result.body
+        assertNotNull(content)
+        assertTrue(content.contains("\"message\""))
+        assertTrue(content.contains("\"hello world\""))
+        assertTrue(content.contains("\"location\""))
+    }
 }
