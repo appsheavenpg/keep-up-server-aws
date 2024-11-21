@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    alias(libs.plugins.sonarqube)
 }
 
 group = "com.appsheaven.pl"
