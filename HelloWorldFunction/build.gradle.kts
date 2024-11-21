@@ -1,5 +1,6 @@
 plugins {
-    kotlin("jvm") version "2.0.21"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.sonarqube)
 }
 
 group = "com.appsheaven.pl"
