@@ -35,11 +35,8 @@ detekt {
 
 tasks.withType<Detekt>().configureEach {
     reports {
-        xml.required.set(true)
-        html.required.set(true)
-        txt.required.set(true)
         sarif.required.set(true)
-        md.required.set(true)
+        sarif.outputLocation.set(file("build/reports/detekt/detekt.sarif"))
     }
 }
 
