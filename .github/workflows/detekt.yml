@@ -1,6 +1,6 @@
 name: Detekt
 
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   detekt:
