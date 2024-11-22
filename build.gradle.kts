@@ -27,16 +27,21 @@ sonar {
     }
 }
 
-detekt {
-    toolVersion = "1.23.7"
-    config.setFrom(file("config/detekt/detekt.yml"))
-    buildUponDefaultConfig = true
-}
-
-tasks.withType<Detekt>().configureEach {
-    reports {
-        sarif.required.set(true)
-        sarif.outputLocation.set(file("build/reports/detekt/detekt.sarif"))
+allprojects {
+    apply(plugin = libs.plugins.detekt.get().pluginId)
+    
+    detekt {
+        toolVersion = "1.23.7"
+        config.setFrom(file("config/detekt/detekt.yml"))
+        buildUponDefaultConfig = true
+    }
+    
+    tasks.withType<Detekt>().configureEach {
+        reports {
+            sarif.required.set(true)
+            // Store all reports in root project's build directory
+            sarif.outputLocation.set(rootProject.layout.buildDirectory.file("reports/detekt/${project.name}-detekt.sarif"))
+        }
     }
 }
 
