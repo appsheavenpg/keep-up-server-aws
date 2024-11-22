@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.sonarqube)
+    alias(libs.plugins.detekt)
 }
 
 repositories {
@@ -23,6 +24,12 @@ sonar {
         property("sonar.organization", organization)
         property("sonar.host.url", hostUrl)
     }
+}
+
+detekt {
+    toolVersion = "1.23.7"
+    config.setFrom(file("config/detekt/detekt.yml"))
+    buildUponDefaultConfig = true
 }
 
 kotlin {
