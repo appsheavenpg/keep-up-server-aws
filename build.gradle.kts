@@ -15,24 +15,27 @@ var env = Properties().apply {
     file(".env").takeIf { it.exists() }?.inputStream()?.use { load(it) }
 }
 
-val projectKey = env.getProperty("SONAR_PROJECT_KEY")
-val organization = env.getProperty("SONAR_ORGANIZATION")
-val hostUrl = env.getProperty("SONAR_HOST_URL")
+val projectKey: String = env.getProperty("SONAR_PROJECT_KEY")
+val organization: String = env.getProperty("SONAR_ORGANIZATION")
+val hostUrl: String = env.getProperty("SONAR_HOST_URL")
+
+val sources = listOf(
+//    "HelloWorldFunction/src/main/java",
+    "HelloWorldFunction/src/test/java"
+)
 
 sonar {
     properties {
         property("sonar.projectKey", projectKey)
         property("sonar.organization", organization)
         property("sonar.host.url", hostUrl)
+//        property("sonar.sources", sources)
     }
 }
 
 detekt {
     config.setFrom(file("./.detekt/detekt.yml"))
-    source.setFrom(
-        file("HelloWorldFunction/src/main/java"),
-        file("HelloWorldFunction/src/test/java"),
-    )
+    source.setFrom(source.map { file(it) })
     buildUponDefaultConfig = true
 }
 
