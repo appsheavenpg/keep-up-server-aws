@@ -8,12 +8,9 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.URI
 import java.util.stream.Collectors
-import kotlin.random.Random
 
 @Suppress("MagicNumber", "SwallowException", "TooGenericExceptionCaught", "SameParameterValue")
 class App : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    
-    private val random = Random(System.currentTimeMillis())
     
     override fun handleRequest(input: APIGatewayProxyRequestEvent?, context: Context?): APIGatewayProxyResponseEvent {
         val headers = mapOf(
@@ -27,7 +24,7 @@ class App : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseE
             val testString: String = "test"
             
             if (testString == null) {
-                throw RuntimeException("Test exception")
+                throw IllegalArgumentException("Test exception")
             }
             
             val pageContents = getPageContents("https://checkip.amazonaws.com")
