@@ -35,7 +35,7 @@ sonar {
 
 detekt {
     config.setFrom(file("./.detekt/detekt.yml"))
-    source.setFrom(source.map { file(it) }.takeLast(1))
+    source.setFrom(source.map { file(it) })
     buildUponDefaultConfig = true
 }
 

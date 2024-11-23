@@ -21,12 +21,6 @@ class App : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseE
         val response = APIGatewayProxyResponseEvent().withHeaders(headers)
         
         return try {
-            val testString: String = "test"
-            
-            if (testString == null) {
-                throw IllegalArgumentException("Test exception")
-            }
-            
             val pageContents = getPageContents("https://checkip.amazonaws.com")
             val output = """{ "message": "hello world", "location": "$pageContents" }"""
             
