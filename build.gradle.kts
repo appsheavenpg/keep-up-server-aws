@@ -20,7 +20,7 @@ val organization: String = env.getProperty("SONAR_ORGANIZATION")
 val hostUrl: String = env.getProperty("SONAR_HOST_URL")
 
 val sources = listOf(
-//    "HelloWorldFunction/src/main/java",
+    "HelloWorldFunction/src/main/java",
     "HelloWorldFunction/src/test/java"
 )
 
@@ -29,13 +29,13 @@ sonar {
         property("sonar.projectKey", projectKey)
         property("sonar.organization", organization)
         property("sonar.host.url", hostUrl)
-//        property("sonar.sources", sources)
+        property("sonar.sources", sources)
     }
 }
 
 detekt {
     config.setFrom(file("./.detekt/detekt.yml"))
-    source.setFrom(source.map { file(it) })
+    source.setFrom(source.map { file(it) }.takeLast(1))
     buildUponDefaultConfig = true
 }
 
