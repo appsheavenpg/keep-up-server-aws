@@ -9,6 +9,7 @@ import java.io.InputStreamReader
 import java.net.URI
 import java.util.stream.Collectors
 
+@Suppress("MagicNumber", "SwallowException", "TooGenericExceptionCaught", "SameParameterValue")
 class App : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     
     override fun handleRequest(input: APIGatewayProxyRequestEvent?, context: Context?): APIGatewayProxyResponseEvent {
@@ -26,7 +27,7 @@ class App : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseE
             response
                 .withStatusCode(200)
                 .withBody(output)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             response
                 .withBody("{}")
                 .withStatusCode(500)
