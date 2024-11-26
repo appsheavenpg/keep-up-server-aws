@@ -20,13 +20,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Create .env file
-        uses: ./.github/actions/create-env.yml
+        uses: ./.github/actions/create-env
 
       - name: Run detekt
         run: ./gradlew detekt
-
-      - name: Upload SARIF files
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: build/reports/detekt/detekt.sarif
