@@ -8,5 +8,6 @@ runs:
       shell: bash
       run: |
         touch .env
-        echo "AWS_ACCOUNT_ID=${{ env.AWS_ACCOUNT_ID }}" >> .env
-        echo "AWS_REGION=${{ env.AWS_REGION }}" >> .env
+          echo "SONAR_PROJECT_KEY=${{ secrets.SONAR_PROJECT_KEY }}" >> .env
+          echo "SONAR_ORGANIZATION=${{ secrets.SONAR_ORGANIZATION }}" >> .env
+          echo "SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }}" >> .env
