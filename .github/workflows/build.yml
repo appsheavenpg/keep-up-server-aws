@@ -23,6 +23,10 @@ jobs:
 
       - name: Create .env file
         uses: ./.github/actions/env
+        with:
+          sonar_project_key: ${{ secrets.SONAR_PROJECT_KEY }}
+          sonar_organization: ${{ secrets.SONAR_ORGANIZATION }}
+          sonar_host_url: ${{ secrets.SONAR_HOST_URL }}
 
       - name: Cache SonarQube Cloud packages
         uses: actions/cache@v4

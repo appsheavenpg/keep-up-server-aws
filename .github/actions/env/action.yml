@@ -1,6 +1,17 @@
 name: 'Create Environment File'
 description: 'Creates .env file with required environment variables'
 
+inputs:
+  sonar_project_key:
+    description: 'Sonar Project Key'
+    required: true
+  sonar_organization:
+    description: 'Sonar Organization'
+    required: true
+  sonar_host_url:
+    description: 'Sonar Host URL'
+    required: true
+
 runs:
   using: "composite"
   steps:
@@ -8,6 +19,6 @@ runs:
       shell: bash
       run: |
         touch .env
-        echo "SONAR_PROJECT_KEY=${{ secrets.SONAR_PROJECT_KEY }}" >> .env
-        echo "SONAR_ORGANIZATION=${{ secrets.SONAR_ORGANIZATION }}" >> .env
-        echo "SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }}" >> .env
+        echo "SONAR_PROJECT_KEY=${{ inputs.sonar_project_key }}" >> .env
+        echo "SONAR_ORGANIZATION=${{ inputs.sonar_organization }}" >> .env
+        echo "SONAR_HOST_URL=${{ inputs.sonar_host_url }}" >> .env
