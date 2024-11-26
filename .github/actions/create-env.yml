@@ -1,14 +1,12 @@
-name: Create Environment File
-on:
-  workflow_call:
+name: 'Create Environment File'
+description: 'Creates .env file with required environment variables'
 
-jobs:
-  create-env:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Create .env file
-        run: |
-          touch .env
-          echo "SONAR_PROJECT_KEY=${{ secrets.SONAR_PROJECT_KEY }}" >> .env
-          echo "SONAR_ORGANIZATION=${{ secrets.SONAR_ORGANIZATION }}" >> .env
-          echo "SONAR_HOST_URL=${{ secrets.SONAR_HOST_URL }}" >> .env
+runs:
+  using: "composite"
+  steps:
+    - name: Create .env file
+      shell: bash
+      run: |
+        touch .env
+        echo "AWS_ACCOUNT_ID=${{ env.AWS_ACCOUNT_ID }}" >> .env
+        echo "AWS_REGION=${{ env.AWS_REGION }}" >> .env
