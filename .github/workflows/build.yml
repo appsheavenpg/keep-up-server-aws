@@ -22,7 +22,7 @@ jobs:
           distribution: 'zulu' # Alternative distribution options are available
 
       - name: Create .env file
-        uses: ./.github/actions/create-env.yml
+        uses: ./.github/actions/env/create-env.yml
 
       - name: Cache SonarQube Cloud packages
         uses: actions/cache@v4
