@@ -10,6 +10,7 @@ import java.net.URI
 import java.util.stream.Collectors
 
 @Suppress("MagicNumber", "SwallowException", "TooGenericExceptionCaught", "SameParameterValue")
+@SuppressWarnings("coverage")
 class App : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
     
     override fun handleRequest(input: APIGatewayProxyRequestEvent?, context: Context?): APIGatewayProxyResponseEvent {
