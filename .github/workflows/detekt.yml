@@ -20,7 +20,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Create .env file
-        uses: ./.github/workflows/create-env.yml
+        uses: ./.github/actions/create-env.yml
 
       - name: Run detekt
         run: ./gradlew detekt
