@@ -1,5 +1,4 @@
-import java.util.Properties
-import io.gitlab.arturbosch.detekt.Detekt
+import java.util.*
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -37,13 +36,6 @@ detekt {
     config.setFrom(file("./.detekt/detekt.yml"))
     source.setFrom(source.map { file(it) })
     buildUponDefaultConfig = true
-}
-
-tasks.withType<Detekt>().configureEach {
-    reports {
-        sarif.required.set(true)
-        sarif.outputLocation.set(file("build/reports/detekt/detekt.sarif"))
-    }
 }
 
 kotlin {
