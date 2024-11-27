@@ -1,5 +1,3 @@
-import java.util.*
-
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.sonarqube)
@@ -10,13 +8,9 @@ repositories {
     mavenCentral()
 }
 
-var env = Properties().apply {
-    file(".env").takeIf { it.exists() }?.inputStream()?.use { load(it) }
-}
-
-val projectKey: String = env.getProperty("SONAR_PROJECT_KEY")
-val organization: String = env.getProperty("SONAR_ORGANIZATION")
-val hostUrl: String = env.getProperty("SONAR_HOST_URL")
+val projectKey: String = "appsheavenpg_keep-up-server-aws"
+val organization: String = "apps-heaven"
+val hostUrl: String = "https://sonarcloud.io"
 
 val sources = listOf(
     "HelloWorldFunction/src/main/java",
